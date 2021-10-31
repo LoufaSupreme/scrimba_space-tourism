@@ -63,6 +63,8 @@ body {
   color: hsl(var(--clr-white));
   line-height: 1.5; /* default line-height is 1.4 */
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 /* make images easier to work with */
@@ -107,7 +109,7 @@ select {
 
 .flow > *:where(:not(:first-child)) {
   /* select anything with a sibling before it */
-  margin-top: var(--flow-space, 1rem); /* default to 1rem if var is not set */
+  margin-top: var(--flow-space, 1rem); /* default to 1rem if --flow-space is not set */
   /* outline: 1px solid red; */
 }
 
@@ -116,6 +118,26 @@ select {
   margin-inline: auto;
   max-width: 80rem;
 }
+
+.grid-container {
+  display: grid;
+}
+
+@media (min-width: 45rem) {
+  .grid-container {
+    grid-template-columns: minmax(2rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(2rem, 1fr);
+    column-gap: var(--container-gap, 2rem);
+  }
+  
+  .grid-container > *:first-child {
+    grid-column: 2;
+  }
+  
+  .grid-container > *:last-child {
+    grid-column: 3;
+  }
+}
+
 
 /* screen reader only */
 .sr-only {
@@ -225,7 +247,7 @@ select {
 
 .large-button {
   position: relative;
-  display: grid; /* prevents button from overlapping other content */
+  display: inline-grid; /* prevents button from overlapping other content */
   z-index: 1;
   place-items: center; /* short hand for align-items and justify-content */
   padding: 0 2em;
@@ -270,7 +292,9 @@ select {
 
 .underline-indicators > * {
   padding: var(--underline-gap, 1rem) 0;
+  border: 0;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+  cursor: pointer;
 }
 
 .underline-indicators > *:hover,
@@ -278,6 +302,50 @@ select {
   border-color: hsl(var(--clr-white) / 0.5);
 }
 
-.underline-indicators > .active {
+.underline-indicators > .active,
+.underline-indicators > [aria-selected="true"] {
   border-color: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-white) / 1);
+}
+
+.tab-list {
+  --gap: 2rem;
+}
+
+.dot-indicators > * {
+  cursor: pointer;
+  border: 0;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 0.5em;
+  background-color: hsl(var(--clr-white) / 0.25);
+}
+
+.dot-indicators > *:hover,
+.dot-indicators > *:focus {
+  background-color: hsl(var(--clr-white) / 0.5);
+}
+
+.dot-indicators > .active,
+.dot-indicators > [aria-selected="true"] {
+  background-color: hsl(var(--clr-white) / 1);
+}
+
+.numbered-indicators > * {
+  cursor: pointer;
+  border: 1px solid hsl(var(--clr-white) / 0.5);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  max-width: 75px;
+}
+
+.numbered-indicators > *:hover,
+.numbered-indicators > *:focus {
+  border: 1px solid hsl(var(--clr-white) / 1);
+}
+
+.numbered-indicators > .active,
+.numbered-indicators > [aria-selected="true"] {
+  background-color: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-dark));
 }

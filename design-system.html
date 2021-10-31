@@ -1,18 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title class="ff-serif">Design system</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title class="ff-serif">Design system</title>
         
-        <!-- Google fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
-            rel="stylesheet">
-            
-         <link rel="stylesheet" href="index.css">
+      <!-- Google fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+          rel="stylesheet">
+          
+        <link rel="stylesheet" href="index.css">
 
-        <style>
-            
-        </style>
+      <style>
+          
+      </style>
     </head>
     <body>
         
@@ -107,14 +111,27 @@
                       <a href="#" class="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
                   </div>
                   
-                  <div style="margin-bottom: 50vh">
+                  <div class="flow" style="margin-bottom: 50vh; --flow-space: 4rem;">
                       <!-- Tabs -->
-                      
+                      <div class="tab-list flex underline-indicators">
+                        <button aria-selected="true" class="bg-dark ff-sans-cond uppercase text-accent letter-spacing-2">Moon</button>
+                        <button aria-selected="false" class="bg-dark ff-sans-cond uppercase text-accent letter-spacing-2">Mars</button>
+                        <button aria-selected="false" class="bg-dark ff-sans-cond uppercase text-accent letter-spacing-2">Europa</button>
+                      </div>
                       
                       <!-- Dots -->
-                      
+                      <div class="dot-indicators flex">
+                        <button aria-selected="true"><span class="sr-only">Slider</span></button>
+                        <button aria-selected="false"><span class="sr-only">Slider</span></button>
+                        <button aria-selected="false"><span class="sr-only">Slider</span></button>
+                      </div>
                       
                       <!-- Numbers -->
+                      <div class="numbered-indicators grid">
+                        <button aria-selected="true" class="bg-dark fs-500 ff-serif text-white"><span class="sr-only">Slider</span>1</button>
+                        <button aria-selected="false" class="bg-dark fs-500 ff-serif text-white"><span class="sr-only">Slider</span>2</button>
+                        <button aria-selected="false" class="bg-dark fs-500 ff-serif text-white"><span class="sr-only">Slider</span>3</button>
+                      </div>
                   </div>
               </div>
               
