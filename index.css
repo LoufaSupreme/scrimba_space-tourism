@@ -6,7 +6,7 @@
   --clr-white: 0 0% 100%;
 
   /* font sizes */
-  --fs-900: 9.375rem;
+  --fs-900: clamp(5rem, 7vw + 1rem,9.375rem);
   --fs-800: 6.25rem;
   --fs-700: 3.5rem;
   --fs-600: 2rem;
@@ -19,6 +19,24 @@
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
+}
+
+@media (min-width: 35em) { /* MOBILE.  35em = 560px.  use em instead of rem b/c safari can have issues with rem */
+  :root {
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) { /* Tablets.  Use em instead of rem b/c safari can have issues with rem */
+  :root {
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-400: 1.125rem;
+  }
 }
 
 /* RESETS ------------------------------------------- */
@@ -107,6 +125,10 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.d-block { /* display block elements will not allow anything else to overflow onto their line */
+  display: block;
+}
+
 .flow > *:where(:not(:first-child)) {
   /* select anything with a sibling before it */
   margin-top: var(--flow-space, 1rem); /* default to 1rem if --flow-space is not set */
@@ -121,12 +143,20 @@ select {
 
 .grid-container {
   display: grid;
+  text-align: center;
+  place-items: center;
+  padding: 0 1rem;
 }
 
-@media (min-width: 45rem) {
+.grid-container * {
+  max-width: 50ch;
+}
+
+@media (min-width: 45em) {
   .grid-container {
-    grid-template-columns: minmax(2rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(2rem, 1fr);
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 40rem) minmax(0, 40rem) minmax(1rem, 1fr);
     column-gap: var(--container-gap, 2rem);
+    text-align: left;
   }
   
   .grid-container > *:first-child {
@@ -135,6 +165,11 @@ select {
   
   .grid-container > *:last-child {
     grid-column: 3;
+  }
+
+  .grid-container--home {
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
   }
 }
 
@@ -254,6 +289,7 @@ select {
   aspect-ratio: 1;
   border-radius: 50%; /* 50% for perfect circle */
   text-decoration: none;
+  font-size: 2rem;
 }
 
 .large-button::after {
@@ -348,4 +384,29 @@ select {
 .numbered-indicators > [aria-selected="true"] {
   background-color: hsl(var(--clr-white) / 1);
   color: hsl(var(--clr-dark));
+}
+
+/* ---- PAGE SPECIFIC BACKGROUNDS ------------------------------------------ */
+
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+
+/* Home */
+.home {
+  background-image: url(./assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .home {
+    background-position: center center;
+    background-image: url(./assets/home/background-home-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .home {
+    background-image: url(./assets/home/background-home-desktop.jpg);
+  }
 }
