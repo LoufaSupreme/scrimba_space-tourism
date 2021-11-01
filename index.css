@@ -83,6 +83,7 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-rows: min-content 1fr;
+  overflow-x: hidden;
 }
 
 /* make images easier to work with */
@@ -315,6 +316,63 @@ select {
   padding: 0;
   margin: 0;
   --underline-gap: 2em;
+  background: hsl(var(--clr-dark) / 0.9);
+}
+
+/* add nav blur affect if browser supports it */
+/* need to put the value in the blur function for this to work... */
+@supports (backdrop-filter: blur(1.5rem)) {
+  .primary-navigation {
+    background: hsl( var(--clr-white) / 0.05);
+    backdrop-filter: blur(1.5rem);
+  }
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 35rem) {
+  .primary-navigation {
+    --underline-gap: 0.5rem;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 40%; /* shorthand for top left bottom right */
+    list-style: none;
+    padding: min(20rem, 15vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
+
+  .primary-navigation.open {
+    transform: translateX(0);
+  }
+
+  .primary-navigation.underline-indicators > .active {
+    border: 0;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    right: 1rem;
+    top: 2rem;
+    background: transparent;
+    background-image: url(./assets/shared/icon-hamburger.svg);
+    background-repeat: no-repeat;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .mobile-nav-toggle.open {
+    background-image: url(./assets/shared/icon-close.svg);
+  }
+
 }
 
 .primary-navigation a {
