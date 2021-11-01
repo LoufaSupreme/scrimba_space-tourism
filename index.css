@@ -311,12 +311,32 @@ select {
   transform: scale(1.5);
 }
 
+/* Primary Header */
+
+.logo {
+  margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .primary-navigation {
+  --gap: clamp(1.5rem, 7vw, 3.5rem);
   list-style: none;
-  padding: 0;
   margin: 0;
   --underline-gap: 2em;
   background: hsl(var(--clr-dark) / 0.9);
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  margin-right: 0.5em;
+  font-weight: 700;
 }
 
 /* add nav blur affect if browser supports it */
@@ -328,10 +348,12 @@ select {
   }
 }
 
+/* menu button not visible unless in mobile mode */
 .mobile-nav-toggle {
   display: none;
 }
 
+/* mobile */
 @media (max-width: 35rem) {
   .primary-navigation {
     --underline-gap: 0.5rem;
@@ -363,25 +385,51 @@ select {
     background: transparent;
     background-image: url(./assets/shared/icon-hamburger.svg);
     background-repeat: no-repeat;
+    background-position: center;
     width: 1.5rem;
     aspect-ratio: 1;
     border: 0;
     cursor: pointer;
   }
 
-  .mobile-nav-toggle.open {
+  /* styling of button if nav menu is open */
+  .mobile-nav-toggle[aria-expanded='true'] {
     background-image: url(./assets/shared/icon-close.svg);
   }
-
 }
 
-.primary-navigation a {
-  text-decoration: none;
+@media (min-width: 35em) {
+  .primary-navigation {
+    padding-inline: clamp(3rem, 10vw, 8rem);
+  }
 }
 
-.primary-navigation a > span {
-  margin-right: 0.5em;
-  font-weight: 700;
+/* tablets */
+@media (min-width: 35em) and (max-width: 44.999em) {
+  .primary-navigation a > span {
+    display: none;
+  }
+}
+
+@media (min-width: 45em) {
+  .primary-navigation {
+    margin-block: 2rem;
+  }
+
+  .primary-header::after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 1px;
+    background: hsl(var(--clr-white) / 0.25);
+    width: 110%;
+    order: 1;
+    margin-right: -3rem;
+  }
+
+  nav {
+    order: 2;
+  }
 }
 
 .underline-indicators > * {
